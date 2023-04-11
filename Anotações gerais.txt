@@ -1,0 +1,51 @@
+!Instância Vue
+
+var app = new Vue ({options})
+
+    ex: var app = new Vue ({      // Cria uma nova instância Vue
+        el: '#textoprincipal',    // "el:" cria a relação entre a aplicação Vue e o DOM
+        data: {                   // 
+            product: 'socks'
+        }
+    })
+
+!Conexão ao HTML
+    Isso vai estar se conectando ao html: <h1>{{product}}</h1>
+    as chaves {{algo}} formam uma Expressão. Ela cria ou valida um valor.
+    ex:
+    {{ product + '?' }}
+    {{ firstName + ' ' + lastName }}
+    {{ clicked ? true : false }}
+    {{ message.split('').reverse().join('') }}
+    <h1> I love my {{product}} </h1> -> (i love my socks)
+
+!V-bind: Conexão ao HTML 
+
+    Ao adicionar "v-bind:" ao atributo de um objeto, conecta com a informação declarada dentro da instância.
+    
+    ex:
+
+    Sem o v-bind: <img src = "green-socks.jpg">
+        Obs: necessário informar o src dentro do HTML
+    
+    Com v-bind: <img v-bind:src = "image">  ou <img :src = "image"> (pode omitir v-bind)
+    ---> puxa "image" informado em:
+     
+     data: {
+        product: 'socks',
+        image: 'green-socks.jpg'
+        }
+
+    Pode ser vinculado a vários outros atributos, como :alt, :href, :title, :class, etc.
+
+!v-for: Chamada de atributos do objeto de opções da instância
+
+    ex:  <ul>
+            <li v-for="detail in details"> {{detail}} </li>
+         </ul>
+
+    Desta forma, tudo em "details" será trazido.
+
+!v-if: Renderiza, de forma condicional, atributos do objeto.
+
+    
