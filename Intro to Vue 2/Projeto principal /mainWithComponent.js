@@ -170,10 +170,17 @@ Vue.component('product', {
                     :disable="variantCart == 0"
                     :class="{disabledButton: variantCart == 0}">Remove from cart</button>
 
-            <product-tabs :selectedVariantReview="selectedVariantReview"></product-tabs>
+            <product-review-form @add-review="review"></product-review-form>
 
             <h3 v-if="!selectedVariantReview.length">No reviews yet.</h3>
 
+            <div v-else v-for="review in selectedVariantReview">
+                <hr>
+                <h3>Avaliação de {{review.username}}</h3>
+                <p>Nota: {{review.rating}}</p>
+                <p>Comentário: {{review.review}}<p/>
+                </ul>
+            </div>
         </div>
 
     </div>`,
@@ -201,7 +208,7 @@ Vue.component('product', {
             {
                 variantId: 'verde',
                 variantColor: 'green',
-                variantImage: 'green-socks.jpg',
+                variantImage: '../img/green-socks.jpg',
                 variantQuantity: 11,
                 variantCart: 0,
                 variantReview: []
@@ -209,7 +216,7 @@ Vue.component('product', {
             {
                 variantId: 'azul',
                 variantColor: 'blue',
-                variantImage: 'blue-socks.jpg',
+                variantImage: '../img/blue-socks.jpg',
                 variantQuantity: 2,
                 variantCart: 0,
                 variantReview: []
@@ -267,6 +274,9 @@ Vue.component('product', {
         selectedVariantReview () {                                        // talvez não use
             return this.variants[this.selectedVariant].variantReview
         }
+    },
+    mounted() {
+        console.log(this.variants[this.selectedVariant].variantReview)
     }
 })
 
